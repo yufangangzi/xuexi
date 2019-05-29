@@ -52,9 +52,6 @@ module.exports = {
     new webpack.DefinePlugin({
       DEV: JSON.stringify('development')
     }),
-    new webpack.DllReferencePlugin({
-      manifest: path.resolve(__dirname,'dist','mainfest.json')
-    }),
     new htmlWebpackPlugin({
       template: './src/index.html',
       filename: 'index.html',
@@ -67,7 +64,7 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'css/main.css'
     }),
-    // new cleanWebpackPlugin(),
+    new cleanWebpackPlugin(),
     new webpack.BannerPlugin('made by cg')
   ],
   // devtool: 'source-map',
@@ -103,8 +100,7 @@ module.exports = {
           loader: 'babel-loader',
           options: { //
             presets: [
-              '@babel/preset-env',
-              '@babel/preset-react'
+              '@babel/preset-env'
             ],
             plugins: [
               '@babel/plugin-proposal-class-properties',
