@@ -53,6 +53,23 @@ module.exports = {
     new webpack.DefinePlugin({
       DEV: JSON.stringify('development')
     }),
+    new Happypack({
+      id:'js',
+      use: [
+        {
+          loader: 'babel-loader',
+          options: { //
+            presets: [
+              '@babel/preset-env',
+              '@babel/preset-react'
+            ],
+            plugins: [
+              '@babel/plugin-proposal-class-properties',
+            ]
+          }
+        }
+      ]
+    }),
     new webpack.DllReferencePlugin({
       manifest: path.resolve(__dirname,'dist','mainfest.json')
     }),
@@ -101,18 +118,19 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: { //
-            presets: [
-              '@babel/preset-env',
-              '@babel/preset-react'
-            ],
-            plugins: [
-              '@babel/plugin-proposal-class-properties',
-            ]
-          }
-        }
+        use:'Happypack/loader?id=js',
+        // use: {
+        //   loader: 'babel-loader',
+        //   options: { //
+        //     presets: [
+        //       '@babel/preset-env',
+        //       '@babel/preset-react'
+        //     ],
+        //     plugins: [
+        //       '@babel/plugin-proposal-class-properties',
+        //     ]
+        //   }
+        // }
       },
       { // css-loader 续接@import这种语法
         // style-loader 是把css 插入到 head 的标签中

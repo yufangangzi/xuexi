@@ -1,7 +1,7 @@
 let path = require('path')
 let webpack = require('webpack')
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: {
     react: ['react', 'react-dom']
   },
