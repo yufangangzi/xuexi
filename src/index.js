@@ -2,9 +2,9 @@
 // import {render} from 'react-dom'
 
 // render(<h1>jsx</h1>, window.root)
-import calc from './test'
+// import calc from './test'
 
-console.log(calc.sum(1,2))
+// console.log(calc.sum(1,2))
 // require('@babel/polyfill')
 // let a = require('./a.js')
 // a()
@@ -30,3 +30,23 @@ console.log(calc.sum(1,2))
 // }
 // xhr.send()
 // console.log(DEV)
+
+// let button = document.createElement('button')
+
+// button.innerHTML = 'hello'
+
+// button.addEventListener('click', function () {
+//   console.log('button')
+//   import('./source.js').then(data => {
+//     console.log(data)
+//   })
+// });
+// document.body.appendChild(button)
+
+import str from './source.js'
+console.log(str)
+if (module.hot) {
+  module.hot.accept('./source.js', () => {
+    console.log('文件更新了')
+  })
+}

@@ -69,7 +69,9 @@ module.exports = {
       filename: 'css/main.css'
     }),
     // new cleanWebpackPlugin(),
-    new webpack.BannerPlugin('made by cg')
+    new webpack.BannerPlugin('made by cg'),
+    new webpack.NamedModulesPlugin(), // 打印更新的模块路径
+    // new webpack.HotModuleReplacementPlugin()  // 更新插件
   ],
   // devtool: 'source-map',
   module: {
@@ -110,6 +112,7 @@ module.exports = {
             ],
             plugins: [
               '@babel/plugin-proposal-class-properties',
+              '@babel/plugin-syntax-dynamic-import'
             ]
           }
         }
